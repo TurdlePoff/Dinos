@@ -724,10 +724,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 38e65bb5-2f3d-45c5-9380-fff2efeea245
+  cloudProjectId: a2855bfb-3b2d-47f9-9f28-d7e45c05e764
   framebufferDepthMemorylessMode: 0
-  projectName: DinoProject
-  organizationId: seikyura
+  projectName: DinoProject (1)
+  organizationId: dinoforestryclub
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
