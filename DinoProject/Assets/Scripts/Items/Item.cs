@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MessageSystem;
 
-public class Item : ScriptableObject
+public class Item : ScriptableObject, IMessageSystem
 {
     [Header("Visual Properties")]
     public Sprite m_2DSprite;
@@ -11,4 +12,9 @@ public class Item : ScriptableObject
     public string m_strDescription;
 
     //public virtual 
+
+    public virtual void OnMessageReceive(MessageType _eMessageType, object _MessageBody)
+    {
+
+    }
 }
