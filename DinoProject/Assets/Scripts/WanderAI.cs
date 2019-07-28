@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WanderAI : MonoBehaviour
 {
-    public float m_fWanderRadius = 10.0f;
-    public float m_fWanderSphereDistance = 5.0f;
+    public float m_fWanderRadius = 5.0f;
+    public float m_fWanderSphereDistance = 7.5f;
     public float m_fDistanceTillAcceptableArrival = 1.0f;
     public Vector2 m_WanderTimer = new Vector2(1.0f, 5.0f);
 
@@ -27,7 +27,7 @@ public class WanderAI : MonoBehaviour
         m_fTimer -= Time.deltaTime;
         if(0 >= m_fTimer || m_fDistanceTillAcceptableArrival > Vector3.Distance(transform.position, m_TargetLocation))
         {
-            m_TargetLocation = RandomNavSphere(transform.position, transform.forward * m_fWanderSphereDistance, m_fWanderRadius, -1);
+            m_TargetLocation = RandomNavSphere(transform.position, transform.position + transform.forward * m_fWanderSphereDistance, m_fWanderRadius, -1);
             m_agent.SetDestination(m_TargetLocation);
             m_fTimer = Random.Range(m_WanderTimer.x, m_WanderTimer.y);
         }
@@ -38,7 +38,10 @@ public class WanderAI : MonoBehaviour
 
         UnityEngine.AI.NavMeshHit navHit;
 
-        UnityEngine.AI.NavMesh.SamplePosition(randDirection, out navHit, _fSphereSize, _iLayermask);
+        if(!UnityEngine.AI.NavMesh.SamplePosition(randDirection, out navHit, _fSphereSize, _iLayermask))
+        {
+            UnityEngine.AI.NavMesh.SamplePosition(new Vector3(0.0f, 0.0f, 0.0f), out navHit, _fSphereSize, _iLayermask);
+        }
 
         return navHit.position;
     }
@@ -47,6 +50,9 @@ public class WanderAI : MonoBehaviour
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position + (transform.forward * m_fWanderSphereDistance), m_fWanderRadius);
+        Gizmos.DrawWireSphere(transform.position + (transform.forward * m_fWanderSphereDistance), m_fWanderRadius);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(m_TargetLocation, 1.0f);
     }
 }
