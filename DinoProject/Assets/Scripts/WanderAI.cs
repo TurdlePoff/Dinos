@@ -53,6 +53,6 @@ public class WanderAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + (transform.forward * m_fWanderSphereDistance), m_fWanderRadius);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(m_TargetLocation, 1.0f);
+        Gizmos.DrawSphere(m_TargetLocation, 0.5f);
     }
 }
