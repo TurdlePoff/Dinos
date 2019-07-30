@@ -17,4 +17,10 @@ public class Item : ScriptableObject, IMessageSystem
     {
 
     }
+
+    protected virtual void OnDrop(object _MessageBody) { }
+
+    protected virtual void OnDrag(object _MessageBody) { }
+
+    protected virtual void OnTap(object _MessageBody) { }
 }
