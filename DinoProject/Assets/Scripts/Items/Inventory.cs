@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-
+    public enum EInventoryType
+    {
+        e_Seed,
+        e_Produce,
+    }
 
     static private List<List<ItemHarness>> m_SeedInventory = new List<List<ItemHarness>>();
     static private List<List<ItemHarness>> m_ProduceInventory = new List<List<ItemHarness>>();
@@ -75,57 +79,145 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public Sprite GetUIImageOfSeedsAtPosition(int _iPosition)
+    public Sprite GetUIImageOfSeedsAtPosition(int _iPosition, EInventoryType _eInventoryType)
     {
-        if(m_SeedInventory.Count < _iPosition)
+        List<List<ItemHarness>> ListToLookAt;
+        switch (_eInventoryType)
+        {
+            case EInventoryType.e_Produce:
+                {
+                    ListToLookAt = m_ProduceInventory;
+                    break;
+                }
+            case EInventoryType.e_Seed:
+                {
+                    ListToLookAt = m_SeedInventory;
+                    break;
+                }
+            default:
+                ListToLookAt = m_SeedInventory;
+                break;
+        }
+
+        if (ListToLookAt.Count < _iPosition)
         {
             print("OutOfArray");
             return null;
         }
-        print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
-        return (m_SeedInventory[_iPosition][0].GetItem().m_2DSprite);
+        print("Name of item = " + ListToLookAt[_iPosition][0].GetItem().name);
+        return (ListToLookAt[_iPosition][0].GetItem().m_2DSprite);
     }
 
-    public ItemHarness GetFirstItemAtPosition(int _iPosition)
+    public ItemHarness GetFirstItemAtPosition(int _iPosition, EInventoryType _eInventoryType)
     {
-        if (m_SeedInventory.Count <= _iPosition)
+        List<List<ItemHarness>> ListToLookAt;
+        switch (_eInventoryType)
+        {
+            case EInventoryType.e_Produce:
+                {
+                    ListToLookAt = m_ProduceInventory;
+                    break;
+                }
+            case EInventoryType.e_Seed:
+                {
+                    ListToLookAt = m_SeedInventory;
+                    break;
+                }
+            default:
+                ListToLookAt = m_SeedInventory;
+                break;
+        }
+
+        if (ListToLookAt.Count <= _iPosition)
         {
             print("OutOfArray");
             return null;
         }
-        print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
-        return (m_SeedInventory[_iPosition][0]);
+        print("Name of item = " + ListToLookAt[_iPosition][0].GetItem().name);
+        return (ListToLookAt[_iPosition][0]);
     }
 
-    public void RemoveFirstItemAtPositon(int _iPosition)
+    public void RemoveFirstItemAtPositon(int _iPosition, EInventoryType _eInventoryType)
     {
-        if (m_SeedInventory.Count <= _iPosition)
+        List<List<ItemHarness>> ListToRemoveFrom; 
+        switch (_eInventoryType)
+        {
+            case EInventoryType.e_Produce:
+                {
+                    ListToRemoveFrom = m_ProduceInventory;
+                    break;
+                }
+            case EInventoryType.e_Seed:
+                {
+                    ListToRemoveFrom = m_SeedInventory;
+                    break;
+                }
+            default:
+                ListToRemoveFrom = m_SeedInventory;
+                break;
+        }
+
+        if (ListToRemoveFrom.Count <= _iPosition)
         {
             print("OutOfArray... Can not delete");
             return;
         }
-        print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
+        print("Name of item = " + ListToRemoveFrom[_iPosition][0].GetItem().name);
 
-        Destroy(m_SeedInventory[_iPosition][0]);
+        Destroy(ListToRemoveFrom[_iPosition][0]);
 
-        m_SeedInventory[_iPosition].RemoveAt(0);
+        ListToRemoveFrom[_iPosition].RemoveAt(0);
 
-        if (0 >= m_SeedInventory[_iPosition].Count)
+        if (0 >= ListToRemoveFrom[_iPosition].Count)
         {
-            m_SeedInventory.RemoveAt(_iPosition);
+            ListToRemoveFrom.RemoveAt(_iPosition);
+        }
+
+        switch (_eInventoryType)
+        {
+            case EInventoryType.e_Produce:
+                {
+                    m_ProduceInventory = ListToRemoveFrom;
+                    break;
+                }
+            case EInventoryType.e_Seed:
+                {
+                    m_SeedInventory = ListToRemoveFrom;
+                    break;
+                }
+            default:
+                m_SeedInventory = ListToRemoveFrom;
+                break;
         }
 
         return;
     }
 
-    public void TestPrintGetOfSeedAtPosition(int _iPosition)
+    public void TestPrintGetItemAtPosition(int _iPosition, EInventoryType _eInventoryType)
     {
-        if (m_SeedInventory.Count <= _iPosition)
+        List<List<ItemHarness>> ListToRemoveFrom;
+        switch (_eInventoryType)
+        {
+            case EInventoryType.e_Produce:
+                {
+                    ListToRemoveFrom = m_ProduceInventory;
+                    break;
+                }
+            case EInventoryType.e_Seed:
+                {
+                    ListToRemoveFrom = m_SeedInventory;
+                    break;
+                }
+            default:
+                ListToRemoveFrom = m_SeedInventory;
+                break;
+        }
+        if (ListToRemoveFrom.Count <= _iPosition)
         {
             print("OutOfArray");
             return;
         }
-        print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
+        print("Name of item = " + ListToRemoveFrom[_iPosition][0].GetItem().name);
         return;
     }
 }
