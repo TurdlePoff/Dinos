@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-D:/Users/sally.Gil7363/Desktop/DinoBuild/Build/Dino.apk
+D:/Users/vivian.ngo7572/Documents/AndroidProjects/Dinos/hemmllooo.apk
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?
