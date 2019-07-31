@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotateAroundPoint : MonoBehaviour
 {
     public float m_fTarget = 100.0f;
-    [SerializeField] private Transform m_Target;
+    public Transform m_Target;
 
     void Start()
     {
