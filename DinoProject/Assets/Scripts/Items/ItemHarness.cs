@@ -15,6 +15,7 @@ public class ItemHarness : MonoBehaviour, IMessageSystem
     // Passes whatever message has been received on to its controlling Item
     public void OnMessageReceive(MessageType _eMessageType, object _MessageBody)
     {
+        
         m_Item.OnMessageReceive(_eMessageType, _MessageBody);
     }
 
