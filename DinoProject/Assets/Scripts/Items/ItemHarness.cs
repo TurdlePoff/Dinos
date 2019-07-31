@@ -18,4 +18,13 @@ public class ItemHarness : MonoBehaviour, IMessageSystem
         
         m_Item.OnMessageReceive(_eMessageType, _MessageBody);
     }
+
+    public void SetItem(Item _Item)
+    {
+        m_Item = _Item;
+    }
+    public Item GetItem()
+    {
+        return m_Item;
+    }
 }
