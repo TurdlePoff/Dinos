@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-D:/Users/sally.Gil7363/Documents/DinoGame/DinoProject/Build/Dino.apk
+D:/Users/kerry.pel7420/Documents/Dinos/DinoProject/Build/Farmosaur.apk
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?
@@ -154,3 +154,17 @@ c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 b41d38c84198e86d37e7110ed29b9d13 Assembly-CSharp.dll:.RotateAroundPoint
+54cced885152d06928d346de2f106c9d UnityEngine.Advertisements.Editor.dll:UnityEngine.Advertisements.Banner
+71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Advertisements.Editor.dll:UnityEngine.Advertisements.CallbackExecutor
+71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Advertisements.Editor.dll:UnityEngine.Advertisements.Placeholder
+303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
+7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
+71bb6a6b6c8f052f948db64c7dd3ca4f Unity.Analytics.Editor.dll:UnityEditor.Analytics.AnalyticsEventTrackerEditor
+71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Monetization.Editor.dll:UnityEngine.Monetization.Placeholder
+c44bc742208b5dfdb367c9bf66699bd0 Assembly-CSharp.dll:.ItemHarness
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Adverts
+bcf6f1da031a07ee73e899a261adad34 Assembly-CSharp.dll:.Seed
+41fafc52c1c63d222e478c1bb6bcac89 Assembly-CSharp.dll:.Produce
+881872ec01f2e07bb236b43d013b47c1 Assembly-CSharp.dll:.WanderAI
+23a58ebd674c9dc4ce8acaf1d8da3229 Assembly-CSharp.dll:.TouchManager
+35f08b8c1ed6b00bce86106b505d8c42 Assembly-CSharp.dll:.Item
