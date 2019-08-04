@@ -127,15 +127,15 @@ public class Inventory : MonoBehaviour
         return (m_ProduceInventory[_iPosition][0]);
     }
 
-    public void GetNumberOfSeedItemsAtPosition(int _iPosition) // TODO change void to int
+    public int GetNumberOfSeedItemsAtPosition(int _iPosition) 
     {
         if (m_SeedInventory.Count <= _iPosition)
         {
             print("OutOfArray");
-            return;
+            return 0;
         }
         print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name + "... Number: " + m_SeedInventory[_iPosition].Count);
-        return;// (m_SeedInventory[_iPosition].Count);
+        return (m_SeedInventory[_iPosition].Count);
     }
 
     public int GetNumberOfProduceItemsAtPosition(int _iPosition)
