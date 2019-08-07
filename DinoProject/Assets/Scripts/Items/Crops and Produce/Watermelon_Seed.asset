@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d36ec36ad63b0c4fa753e496abee526, type: 3}
   m_Name: Watermelon_Seed
   m_EditorClassIdentifier: 
-  m_2DSprite: {fileID: 0}
-  m_3DModel: {fileID: 0}
+  m_2DSprite: {fileID: 21300046, guid: cd6cf98b160ef4e448d18192de0527d4, type: 3}
+  m_3DModel: {fileID: 8948575092458588010, guid: 8253009afb98b09479cccd8cb466b9ff,
+    type: 3}
   m_strDescription: 
   m_fGrowthTime: 0
   m_uiCost: 0

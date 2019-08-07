@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Produce
   - Inventory
+  - ObjectPlacer
   layers:
   - Default
   - TransparentFX

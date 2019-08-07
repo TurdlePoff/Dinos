@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -103,6 +104,49 @@ public class Inventory : MonoBehaviour
         }
         print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
         return (m_ProduceInventory[_iPosition][0].GetItem().m_2DSprite);
+    }
+    //public Image GetUIImageOfSeedsAtPosition(int _iPosition)
+    //{
+    //    if (m_SeedInventory.Count < _iPosition)
+    //    {
+    //        print("OutOfArray");
+    //        return null;
+    //    }
+    //    print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
+    //    return (m_SeedInventory[_iPosition][0].GetItem().m_2DSprite);
+    //}
+
+    //public Image GetUIImageOfProduceAtPosition(int _iPosition)
+    //{
+    //    if (m_ProduceInventory.Count < _iPosition)
+    //    {
+    //        print("OutOfArray");
+    //        return null;
+    //    }
+    //    print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
+    //    return (m_ProduceInventory[_iPosition][0].GetItem().m_2DSprite);
+    //}
+
+    public GameObject GetModelOfSeedsAtPosition(int _iPosition)
+    {
+        if (m_SeedInventory.Count < _iPosition)
+        {
+            print("OutOfArray");
+            return null;
+        }
+        print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
+        return (m_SeedInventory[_iPosition][0].GetItem().m_3DModel);
+    }
+
+    public GameObject GetModelOfProduceAtPosition(int _iPosition)
+    {
+        if (m_ProduceInventory.Count < _iPosition)
+        {
+            print("OutOfArray");
+            return null;
+        }
+        print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
+        return (m_ProduceInventory[_iPosition][0].GetItem().m_3DModel);
     }
 
     public ItemHarness GetFirstSeedItemAtPosition(int _iPosition)
