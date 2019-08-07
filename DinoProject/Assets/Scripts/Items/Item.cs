@@ -8,7 +8,7 @@ public class Item : ScriptableObject, IMessageSystem
 {
     [Header("Visual Properties")]
     public Sprite m_2DSprite;
-    public Mesh m_3DModel;
+    public GameObject m_3DModel;
     public string m_strDescription;
 
     //public virtual 
