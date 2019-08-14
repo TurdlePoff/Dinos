@@ -19,6 +19,8 @@ public class SerialisationComponent : MonoBehaviour
             JsonUtility.FromJsonOverwrite((string)binaryFormatter.Deserialize(file), this.gameObject);
             // Close file
             file.Close();
+        } else {
+            Debug.Log("No file for " + this.gameObject.name + " was found");
         }
     }
 
@@ -31,7 +33,7 @@ public class SerialisationComponent : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + PlayerPrefs.GetString("FarmosaurSave", "Default") + "_" + this.gameObject.name + ".pso");
         // Serialise object
         binaryFormatter.Serialize(file, JsonUtility.ToJson(this.gameObject));
-
+        file.Close();
         // Remember to perform any deregistration as required for the attached object
     }
 
