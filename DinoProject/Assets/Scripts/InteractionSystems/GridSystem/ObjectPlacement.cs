@@ -42,6 +42,7 @@ public class ObjectPlacement : MonoBehaviour
             }
             else
             {
+                print("ITS A PRODUCE");
                 m_rMessage.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
                 m_rMsgText.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
 
