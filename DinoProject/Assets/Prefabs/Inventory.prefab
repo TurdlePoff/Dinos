@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473924456221415471}
   - component: {fileID: 5817446412291024304}
+  - component: {fileID: 5492454750225859526}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Inventory
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3722651574334248585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.1532893, y: 31.145992, z: -27.414501}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.628483, y: 0.628483, z: 0.628483}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,5 +42,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 290e7be49a43d6842a6d237c47073d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5492454750225859526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722651574334248585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627f575f364034a47a0ffb7e0d98f9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
