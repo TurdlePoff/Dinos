@@ -105,27 +105,6 @@ public class Inventory : MonoBehaviour
         print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
         return (m_ProduceInventory[_iPosition][0].GetItem().m_2DSprite);
     }
-    //public Image GetUIImageOfSeedsAtPosition(int _iPosition)
-    //{
-    //    if (m_SeedInventory.Count < _iPosition)
-    //    {
-    //        print("OutOfArray");
-    //        return null;
-    //    }
-    //    print("Name of item = " + m_SeedInventory[_iPosition][0].GetItem().name);
-    //    return (m_SeedInventory[_iPosition][0].GetItem().m_2DSprite);
-    //}
-
-    //public Image GetUIImageOfProduceAtPosition(int _iPosition)
-    //{
-    //    if (m_ProduceInventory.Count < _iPosition)
-    //    {
-    //        print("OutOfArray");
-    //        return null;
-    //    }
-    //    print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
-    //    return (m_ProduceInventory[_iPosition][0].GetItem().m_2DSprite);
-    //}
 
     public GameObject GetModelOfSeedsAtPosition(int _iPosition)
     {
@@ -191,6 +170,16 @@ public class Inventory : MonoBehaviour
         }
         print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name + " Number: " + m_ProduceInventory[_iPosition].Count);
         return (m_ProduceInventory[_iPosition].Count);
+    }
+
+    public int GetTotalNumberOfSeeds()
+    {
+        return m_SeedInventory.Count;
+    }
+
+    public int GetTotalNumberOfProduce()
+    {
+        return m_ProduceInventory.Count;
     }
 
     public void RemoveFirstSeedItemAtPositon(int _iPosition)
