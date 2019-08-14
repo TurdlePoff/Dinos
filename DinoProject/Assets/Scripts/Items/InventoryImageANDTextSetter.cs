@@ -28,6 +28,7 @@ public class InventoryImageANDTextSetter : MonoBehaviour, IDropHandler
     // Update is called once per frame
     void Update()
     {
+        if (!m_Inventory) { return; }
         if(m_iCurrentValue != m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition))
         {
             if ((m_iCurrentValue == 0 && m_iCurrentValue < m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition)) 
