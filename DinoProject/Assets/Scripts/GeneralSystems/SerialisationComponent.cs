@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class SerialisationComponent : MonoBehaviour
 {
-
+    
     // Deserialise the parent on enable
     private void OnEnable() {
         DeserialiseSelf();
@@ -23,23 +23,34 @@ public class SerialisationComponent : MonoBehaviour
     public void SerialiseSelf() {
         // Create a binary formatter
         BinaryFormatter binaryFormatter = new BinaryFormatter();
+
+        // Determine Path name
+        string path = Path.Combine(Application.persistentDataPath, PlayerPrefs.GetString("FarmosaurSave", "Default"), "_" + this.gameObject.name + ".pso");
+
         // Create a filestream using the save path for this item
-        FileStream file = File.Create(Application.persistentDataPath + PlayerPrefs.GetString("FarmosaurSave", "Default") + "_" + this.gameObject.name + ".pso");
+        FileStream file = File.Create(path);
+
         // Serialise object
         binaryFormatter.Serialize(file, EditorJsonUtility.ToJson(this.gameObject));
         file.Close();
-        // Remember to perform any deregistration as required for the attached object
+        // !Remember to perform any deregistration as required for the attached object!
     }
 
     public void DeserialiseSelf() {
+        // Determine Path name
+        string path = Path.Combine(Application.persistentDataPath, PlayerPrefs.GetString("FarmosaurSave", "Default"), "_" + this.gameObject.name + ".pso");
+
         // Search for serialised data
-        if (File.Exists(Application.persistentDataPath + PlayerPrefs.GetString("FarmosaurSave", "Default") + "_" + this.gameObject.name + ".pso")) {
+        if (File.Exists(path)) {
             // Create new binary formatter
             BinaryFormatter binaryFormatter = new BinaryFormatter();
+
             // Open file
-            FileStream file = File.Open(Application.persistentDataPath + PlayerPrefs.GetString("FarmosaurSave", "Default") + "_" + this.gameObject.name + ".pso", FileMode.Open);
+            FileStream file = File.Open(path, FileMode.Open);
+
             // Deserialise from JSON
             EditorJsonUtility.FromJsonOverwrite((string)binaryFormatter.Deserialize(file), this.gameObject);
+
             // Close file
             file.Close();
         } else {
