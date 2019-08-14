@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
         e_Produce,
     }
 
+    static private List<ItemHarness> m_Dinos = new List<ItemHarness>();
     static private List<List<ItemHarness>> m_SeedInventory = new List<List<ItemHarness>>();
     static private List<List<ItemHarness>> m_ProduceInventory = new List<List<ItemHarness>>();
 
@@ -30,6 +31,7 @@ public class Inventory : MonoBehaviour
     public void AddItemToInventory(Item _ItemToAdd)
     {
         Seed isSeed = _ItemToAdd as Seed;
+        Dinos isDino = _ItemToAdd as Dinos;
         Produce isProduce = _ItemToAdd as Produce;
         if (isSeed)
         {
@@ -39,6 +41,10 @@ public class Inventory : MonoBehaviour
         {
             AddInventoryItem(_ItemToAdd, ref m_ProduceInventory);
         }
+        else if(isDino)
+        {
+            AddInventoryItem(_ItemToAdd, ref m_Dinos);
+        }
         else
         {
             print("Error: Unknown Type ");
@@ -47,6 +53,14 @@ public class Inventory : MonoBehaviour
         print("Added " + _ItemToAdd.name);
     }
 
+    private void AddInventoryItem(Item _ItemToAdd, ref List<ItemHarness> _ListToAddTo)
+    {
+        // Add item to Harness
+        ItemHarness newItem = gameObject.AddComponent<ItemHarness>();
+        newItem.SetItem(_ItemToAdd);
+
+        _ListToAddTo.Add(newItem);
+    }
     private void AddInventoryItem(Item _ItemToAdd, ref List<List<ItemHarness>> _ListToAddTo)
     {
         // Add item to Harness
@@ -106,6 +120,17 @@ public class Inventory : MonoBehaviour
         return (m_ProduceInventory[_iPosition][0].GetItem().m_2DSprite);
     }
 
+    public Sprite GetUIImageOfDinoAtPosition(int _iPosition)
+    {
+        if (m_Dinos.Count < _iPosition)
+        {
+            print("OutOfArray");
+            return null;
+        }
+        print("Name of item = " + m_Dinos[_iPosition].GetItem().name);
+        return (m_Dinos[_iPosition].GetItem().m_2DSprite);
+    }
+
     public GameObject GetModelOfSeedsAtPosition(int _iPosition)
     {
         if (m_SeedInventory.Count < _iPosition)
@@ -126,6 +151,17 @@ public class Inventory : MonoBehaviour
         }
         print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
         return (m_ProduceInventory[_iPosition][0].GetItem().m_3DModel);
+    }
+
+    public GameObject GetModelOfDinoAtPosition(int _iPosition)
+    {
+        if (m_Dinos.Count < _iPosition)
+        {
+            print("OutOfArray");
+            return null;
+        }
+        print("Name of item = " + m_Dinos[_iPosition].GetItem().name);
+        return (m_Dinos[_iPosition].GetItem().m_3DModel);
     }
 
     public ItemHarness GetFirstSeedItemAtPosition(int _iPosition)
@@ -150,6 +186,17 @@ public class Inventory : MonoBehaviour
         return (m_ProduceInventory[_iPosition][0]);
     }
 
+    public ItemHarness GetFirstDinoAtPosition(int _iPosition)
+    {
+        if (m_Dinos.Count <= _iPosition)
+        {
+            print("OutOfArray");
+            return null;
+        }
+        print("Name of item = " + m_Dinos[_iPosition].GetItem().name);
+        return (m_Dinos[_iPosition]);
+    }
+
     public int GetNumberOfSeedItemsAtPosition(int _iPosition) 
     {
         if (m_SeedInventory.Count <= _iPosition)
@@ -172,6 +219,17 @@ public class Inventory : MonoBehaviour
         return (m_ProduceInventory[_iPosition].Count);
     }
 
+    public int GetNumberOfDinosAtPosition(int _iPosition)
+    {
+        if (m_Dinos.Count <= _iPosition)
+        {
+            print("OutOfArray");
+            return 0;
+        }
+        print("Name of item Dinos, Number: " + m_Dinos.Count);
+        return (m_Dinos.Count);
+    }
+
     public int GetTotalNumberOfSeeds()
     {
         return m_SeedInventory.Count;
@@ -180,6 +238,11 @@ public class Inventory : MonoBehaviour
     public int GetTotalNumberOfProduce()
     {
         return m_ProduceInventory.Count;
+    }
+
+    public int GetTotalNumberOfDinos()
+    {
+        return m_Dinos.Count;
     }
 
     public void RemoveFirstSeedItemAtPositon(int _iPosition)
@@ -222,7 +285,7 @@ public class Inventory : MonoBehaviour
         return;
     }
 
-    public void TestPrintGetOfSeedAtPosition(int _iPosition)
+    public void TestPrintGetNameOfSeedAtPosition(int _iPosition)
     {
         if (m_SeedInventory.Count <= _iPosition)
         {
@@ -233,7 +296,7 @@ public class Inventory : MonoBehaviour
         return;
     }
 
-    public void TestPrintGetOfProduceAtPosition(int _iPosition)
+    public void TestPrintGetNameOfProduceAtPosition(int _iPosition)
     {
         if (m_ProduceInventory.Count <= _iPosition)
         {
@@ -241,6 +304,17 @@ public class Inventory : MonoBehaviour
             return;
         }
         print("Name of item = " + m_ProduceInventory[_iPosition][0].GetItem().name);
+        return;
+    }
+
+    public void TestPrintGetNameOfDinoAtPosition(int _iPosition)
+    {
+        if (m_Dinos.Count <= _iPosition)
+        {
+            print("OutOfArray");
+            return;
+        }
+        print("Name of item = " + m_Dinos[_iPosition].GetItem().name);
         return;
     }
 }

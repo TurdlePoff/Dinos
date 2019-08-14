@@ -9,7 +9,11 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
 
     private void Start()
     {
-        m_rObjectPlacer = GameObject.FindGameObjectWithTag("ObjectPlacer").GetComponent<ObjectPlacement>();
+        GameObject temp = GameObject.FindGameObjectWithTag("ObjectPlacer");
+        if (temp)
+        {
+            m_rObjectPlacer = temp.GetComponent<ObjectPlacement>();
+        }
     }
 
     public void OnDrop(PointerEventData eventData)

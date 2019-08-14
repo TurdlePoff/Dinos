@@ -8,6 +8,7 @@ TagManager:
   - Inventory
   - ObjectPlacer
   - ProduceFeedDisplay
+  - DinoFeedDisplay
   layers:
   - Default
   - TransparentFX
