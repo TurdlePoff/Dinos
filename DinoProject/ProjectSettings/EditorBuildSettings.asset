@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: bbc6ed658bb29904cbbf570b5df85fa9
   - enabled: 1
+    path: Assets/Scenes/InDinoHouseScene.unity
+    guid: de85bbae8e06fed4093bf0ced500ba8f
+  - enabled: 1
     path: Assets/Scenes/VivScene.unity
     guid: 6a570ee8e0e5a11479453f7936515cea
   m_configObjects: {}

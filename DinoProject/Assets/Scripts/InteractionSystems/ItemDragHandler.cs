@@ -5,13 +5,52 @@ using UnityEngine.EventSystems;
 
 public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    public bool m_bTop = false;
+    public bool m_bRight = false;
+    public bool m_bUseRelativePositionToReplace = true;
+
+    private Vector3 m_OffsetPosition;
+    private Vector3 m_OriginalPosition;
+
+    void Start()
+    {
+        m_OriginalPosition = transform.position;
+
+        Vector2 uiSize = GetComponent<RectTransform>().rect.size;
+        m_OffsetPosition = new Vector3();
+        if (m_bTop)
+        {
+            m_OffsetPosition.y = (uiSize.y / 2.0f);
+        }
+        else
+        {
+            m_OffsetPosition.y = -(uiSize.y / 2.0f);
+        }
+        if (m_bRight)
+        {
+            m_OffsetPosition.x = (uiSize.x / 2.0f);
+        }
+        else
+        {
+            m_OffsetPosition.x = -(uiSize.x / 2.0f);
+        }
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        transform.SetSiblingIndex(-1);
+        transform.position = Input.mousePosition + m_OffsetPosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.localPosition = Vector3.zero;
+        if (m_bUseRelativePositionToReplace)
+        {
+            transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            transform.position = m_OriginalPosition;
+        }
     }
 }

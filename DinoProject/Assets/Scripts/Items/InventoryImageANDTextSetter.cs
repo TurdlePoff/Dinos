@@ -15,6 +15,7 @@ public class InventoryImageANDTextSetter : MonoBehaviour, IDropHandler
     private ObjectPlacement m_rObjectPlacer;
     private Inventory m_Inventory;
     private int m_iCurrentValue = 0;
+    private string m_strCurrentItemName = "NONE";
 
     // Start is called before the first frame update
     void Start()
@@ -27,37 +28,53 @@ public class InventoryImageANDTextSetter : MonoBehaviour, IDropHandler
     // Update is called once per frame
     void Update()
     {
+        if (!m_Inventory) { return; }
         if(m_iCurrentValue != m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition))
         {
             if ((m_iCurrentValue == 0 && m_iCurrentValue < m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition)) 
              || (m_iCurrentValue == 1 && m_iCurrentValue > m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition)))
             {
-                ChangeValue(true); // Went from item image to black image vice verse
+                ChangeValue(); // Went from item image to black image vice verse
             }
             else
             {
-                ChangeValue(false);
+                ChangeValue();
             }
             m_iCurrentValue = m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition);
         }
-    }
 
-    public void ChangeValue(bool _bChangeImage)
-    {
-        if(_bChangeImage)
+        if(0 < m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition))
         {
-            if (0 == m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition))
+            if(m_strCurrentItemName != m_Inventory.GetFirstSeedItemAtPosition(m_iPosition).GetItem().name)
             {
-                gameObject.GetComponent<Image>().color = m_cDefaultColour;
-                gameObject.GetComponent<Image>().sprite = null;
-            }
-            else
-            {
-                gameObject.GetComponent<Image>().color = m_cActiveColour;
-                gameObject.GetComponent<Image>().sprite = m_Inventory.GetFirstSeedItemAtPosition(m_iPosition).GetItem().m_2DSprite;
+                m_strCurrentItemName = m_Inventory.GetFirstSeedItemAtPosition(m_iPosition).GetItem().name;
+                ChangeImage();
             }
         }
+        else if("NONE" != m_strCurrentItemName)
+        {
+            ChangeImage();
+            m_strCurrentItemName = "NONE";
+        }
+    }
+
+    private void ChangeValue()
+    {
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition).ToString();
+    }
+
+    private void ChangeImage()
+    {
+        if (0 == m_Inventory.GetNumberOfSeedItemsAtPosition(m_iPosition))
+        {
+            gameObject.GetComponent<Image>().color = m_cDefaultColour;
+            gameObject.GetComponent<Image>().sprite = null;
+        }
+        else
+        {
+            gameObject.GetComponent<Image>().color = m_cActiveColour;
+            gameObject.GetComponent<Image>().sprite = m_Inventory.GetFirstSeedItemAtPosition(m_iPosition).GetItem().m_2DSprite;
+        }
     }
 
     public void OnDrop(PointerEventData eventData)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0d7f775c45f914f9995379fd2eb951, type: 3}
   m_Name: Wheat_Produce
   m_EditorClassIdentifier: 
-  m_2DSprite: {fileID: 0}
+  m_2DSprite: {fileID: 21300212, guid: cd6cf98b160ef4e448d18192de0527d4, type: 3}
   m_3DModel: {fileID: 0}
   m_strDescription: 
   m_fValue: 0
