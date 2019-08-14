@@ -7,6 +7,7 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public bool m_bTop = false;
     public bool m_bRight = false;
+    public bool m_bUseRelativePositionToReplace = true;
 
     private Vector3 m_OffsetPosition;
     private Vector3 m_OriginalPosition;
@@ -43,6 +44,13 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.position = m_OriginalPosition;
+        if (m_bUseRelativePositionToReplace)
+        {
+            transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            transform.position = m_OriginalPosition;
+        }
     }
 }
