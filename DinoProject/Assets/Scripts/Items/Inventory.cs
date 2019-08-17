@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Inventory : MonoBehaviour
 {
@@ -9,17 +10,52 @@ public class Inventory : MonoBehaviour
     {
         e_Seed = 0,
         e_Produce,
+        e_Dino,
     }
 
     static private List<ItemHarness> m_Dinos = new List<ItemHarness>();
     static private List<List<ItemHarness>> m_SeedInventory = new List<List<ItemHarness>>();
     static private List<List<ItemHarness>> m_ProduceInventory = new List<List<ItemHarness>>();
 
+    private bool m_bStartRunning = true;
 
     // Start is called before the first frame update
     void Start() 
     {
-        
+        // Temporary play save state
+        if(0 < PlayerPrefs.GetInt("NumberOfWatermelon_Seed"))
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("NumberOfWatermelon_Seed"); ++i)
+            {
+                Item Item = (Item)AssetDatabase.LoadAssetAtPath("Assets/Scripts/Items/Crops and Produce/Watermelon_Seed.asset", typeof(Item));
+                AddItemToInventory(Item);
+            }
+        }
+        if (0 < PlayerPrefs.GetInt("NumberOfWheat_Seed"))
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("NumberOfWheat_Seed"); ++i)
+            {
+                Item Item = (Item)AssetDatabase.LoadAssetAtPath("Assets/Scripts/Items/Crops and Produce/Wheat_Seed.asset", typeof(Item));
+                AddItemToInventory(Item);
+            }
+        }
+        if (0 < PlayerPrefs.GetInt("NumberOfWheat_Produce"))
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("NumberOfWheat_Produce"); ++i)
+            {
+                Item Item = (Item)AssetDatabase.LoadAssetAtPath("Assets/Scripts/Items/Crops and Produce/Wheat_Produce.asset", typeof(Item));
+                AddItemToInventory(Item);
+            }
+        }
+        if (0 < PlayerPrefs.GetInt("NumberOfTestDino"))
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("NumberOfTestDino"); ++i)
+            {
+                Item Item = (Item)AssetDatabase.LoadAssetAtPath("Assets/Scripts/Items/Crops and Produce/TestDino.asset", typeof(Item));
+                AddItemToInventory(Item);
+            }
+        }
+        m_bStartRunning = false;
     }
 
     // Update is called once per frame
@@ -49,8 +85,30 @@ public class Inventory : MonoBehaviour
         {
             print("Error: Unknown Type ");
         }
-        
+
+        // Just to make sure it doesn't set inventory to one upon starting (and adding items to inventory)
+        if (!m_bStartRunning)
+        {
+            ResetPlayPrefData();
+        }
+
         print("Added " + _ItemToAdd.name);
+    }
+
+    public void ResetPlayPrefData()
+    {
+        foreach (List<ItemHarness> items in m_SeedInventory)
+        {
+            string strPlayerPrefLable = "NumberOf" + items[0].GetItem().name;
+            PlayerPrefs.SetInt(strPlayerPrefLable, items.Count);
+        }
+        foreach (List<ItemHarness> items in m_ProduceInventory)
+        {
+            string strPlayerPrefLable = "NumberOf" + items[0].GetItem().name;
+            PlayerPrefs.SetInt(strPlayerPrefLable, items.Count);
+        }
+
+        PlayerPrefs.SetInt("NumberOfTestDino", m_Dinos.Count);
     }
 
     private void AddInventoryItem(Item _ItemToAdd, ref List<ItemHarness> _ListToAddTo)
@@ -262,6 +320,8 @@ public class Inventory : MonoBehaviour
         {
             m_SeedInventory.RemoveAt(_iPosition);
         }
+
+        ResetPlayPrefData();
         return;
     }
 
@@ -282,6 +342,25 @@ public class Inventory : MonoBehaviour
         {
             m_ProduceInventory.RemoveAt(_iPosition);
         }
+
+        ResetPlayPrefData();
+        return;
+    }
+
+    public void RemoveFirstDinoAtPositon(int _iPosition)
+    {
+        if (m_Dinos.Count <= _iPosition)
+        {
+            print("OutOfArray... Can not delete");
+            return;
+        }
+        print("Name of item = " + m_Dinos[_iPosition].GetItem().name);
+
+        Destroy(m_Dinos[_iPosition]);
+
+        m_Dinos.RemoveAt(_iPosition);
+
+        ResetPlayPrefData();
         return;
     }
 
